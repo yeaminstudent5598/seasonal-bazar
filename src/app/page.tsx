@@ -142,7 +142,7 @@ export default function Home() {
           </div>
 
           {/* Seasonal Circles */}
-          <div className="relative z-10 flex gap-3 md:justify-between -mt-16 mb-8 px-2 md:px-6 overflow-x-auto no-scrollbar py-2">
+          <div className="relative z-10 flex gap-3 md:justify-between lg:-mt-24 -mt-20 mb-8 px-2 md:px-6 overflow-x-auto no-scrollbar py-2">
             {seasons.map((season, idx) => (
               <div key={idx} className="flex flex-col items-center group shrink-0 first:pl-2 last:pr-2">
                 <div className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-[#800000] border-[3px] md:border-[5px] border-white shadow-lg flex items-center justify-center cursor-pointer hover:scale-110 transition-transform duration-300 hover:bg-[#A00000]">
