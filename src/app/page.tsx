@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Search, MapPin, ShoppingBag, User, ChevronRight, Heart } from "lucide-react";
+import { Search, MapPin, ShoppingBag, User, ChevronRight, Heart, Menu, Home as HomeIcon, LayoutGrid } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
@@ -35,244 +35,244 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-[#F0F2F5]">
+    // pb-20 added to prevent content hiding behind bottom nav on mobile
+    <div className="min-h-screen flex flex-col font-sans bg-[#F0F2F5] pb-20 md:pb-0">
       
       {/* --- HEADER --- */}
-      <header className="bg-[#800000] h-20 sticky top-0 z-50 shadow-md">
+      <header className="bg-[#800000] h-14 md:h-20 sticky top-0 z-50 shadow-md transition-all">
         <div className="container mx-auto px-4 h-full flex items-center justify-between gap-4">
           
-          {/* Logo Section */}
-          <div className="relative w-28 shrink-0">
-            <div className="absolute top-[-25px] left-18 w-28 h-28 bg-white rounded-full border-[5px] border-white flex items-center justify-center shadow-lg z-30 overflow-hidden cursor-pointer">
-               {/* আপনার লোগো ফাইলটি এখানে বসানো হয়েছে */}
-               <div className="relative w-full h-full p-3">
-                 <Image 
-                   src="/SeasonalBazar_Logo.png" 
-                   alt="Seasonal Bazar Logo" 
-                   fill
-                   className="object-contain"
-                   priority
-                 />
+          {/* MOBILE HEADER LAYOUT */}
+          <div className="flex items-center gap-3 md:hidden w-full">
+             <Menu className="text-white w-6 h-6 cursor-pointer" />
+             <span className="text-white font-bold text-lg flex-1">Seasonal Bazar</span>
+             <Search className="text-white w-5 h-5 cursor-pointer" />
+             <div className="relative">
+                <ShoppingBag className="text-white w-5 h-5" />
+                <span className="absolute -top-1 -right-1 bg-yellow-400 text-black text-[9px] font-bold w-3 h-3 rounded-full flex items-center justify-center">0</span>
+             </div>
+          </div>
+
+          {/* DESKTOP HEADER LAYOUT */}
+          <div className="hidden md:flex items-center justify-between w-full gap-4">
+            
+            {/* Desktop Logo Section */}
+            <div className="relative w-28 shrink-0">
+              <div className="absolute top-[-30px] left-18 w-24 h-24 lg:w-28 lg:h-28 bg-white rounded-full border-[5px] border-white flex items-center justify-center shadow-lg z-30 overflow-hidden cursor-pointer group">
+                 <div className="relative w-full h-full p-3 group-hover:scale-105 transition-transform">
+                   <Image 
+                     src="/SeasonalBazar_Logo.png" 
+                     alt="Seasonal Bazar Logo" 
+                     fill
+                     className="object-contain"
+                     priority
+                   />
+                 </div>
+              </div>
+            </div>
+
+            {/* Search Bar */}
+            <div className="flex-1 max-w-2xl relative">
+              <input 
+                type="text" 
+                placeholder="Search Seasonal Product..." 
+                className="w-full h-10 pl-5 pr-10 rounded-full text-sm focus:outline-none shadow-inner text-black bg-white focus:ring-2 focus:ring-yellow-400 transition-all"
+              />
+               <Search className="absolute right-3 top-2.5 text-gray-500 w-5 h-5" />
+            </div>
+
+            {/* Desktop Icons */}
+            <div className="flex items-center gap-3">
+               <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-200 transition shadow-sm group">
+                  <MapPin className="text-black w-5 h-5 group-hover:text-[#800000]" />
+               </div>
+               <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-200 transition shadow-sm relative group">
+                  <ShoppingBag className="text-black w-5 h-5 group-hover:text-[#800000]" />
+                  <span className="absolute -top-1 -right-1 bg-yellow-400 text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white">0</span>
+               </div>
+               <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-200 transition shadow-sm group">
+                  <User className="text-black w-5 h-5 group-hover:text-[#800000]" />
                </div>
             </div>
           </div>
 
-          {/* Search Bar */}
-          <div className="flex-1 max-w-2xl relative">
-            <input 
-              type="text" 
-              placeholder="Search Seasonal Product" 
-              className="w-full h-10 pl-5 pr-10 rounded-full text-sm focus:outline-none shadow-inner text-black bg-white"
-            />
-             <Search className="absolute right-3 top-2.5 text-gray-500 w-5 h-5" />
-          </div>
-
-          {/* Icons */}
-          <div className="flex items-center gap-3">
-             <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-200 transition shadow-sm group">
-                <MapPin className="text-black w-5 h-5" />
-             </div>
-             <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-200 transition shadow-sm relative group">
-                <ShoppingBag className="text-black w-5 h-5" />
-                <span className="absolute -top-1 -right-1 bg-yellow-400 text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white">0</span>
-             </div>
-             <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-200 transition shadow-sm group">
-                <User className="text-black w-5 h-5" />
-             </div>
-          </div>
         </div>
       </header>
 
       {/* --- MAIN CONTENT LAYOUT --- */}
-      <div className="container mx-auto px-4 py-6 flex gap-6 flex-1 items-start">
+      <div className="container mx-auto px-3 md:px-4 py-4 md:py-6 flex gap-6 flex-1 items-start">
         
-        {/* 1. LEFT SIDEBAR (Categories) */}
-        <aside className="w-64 bg-[#EAEAEA] py-4 pt-10 hidden lg:block shrink-0 rounded shadow-sm self-start sticky top-24">
+        {/* 1. LEFT SIDEBAR (Categories) - Hidden on Mobile */}
+        <aside className="w-64 bg-white border border-gray-200 py-4 hidden lg:block shrink-0 rounded-lg shadow-sm self-start sticky top-24">
           <ul className="space-y-0.5">
             {categories.map((cat, idx) => (
-              <li key={idx} className="px-5 py-2 text-gray-700 text-[14px] font-medium hover:text-[#800000] hover:bg-white cursor-pointer flex justify-between items-center group transition-colors border-l-4 border-transparent hover:border-[#800000]">
+              <li key={idx} className="px-5 py-2.5 text-gray-700 text-[14px] font-medium hover:text-[#800000] hover:bg-red-50 cursor-pointer flex justify-between items-center group transition-colors border-l-4 border-transparent hover:border-[#800000]">
                 {cat}
-                <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-[#800000] opacity-0 group-hover:opacity-100 transition-opacity" />
+                <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-[#800000] transition-all group-hover:translate-x-1" />
               </li>
             ))}
           </ul>
         </aside>
 
         {/* 2. CENTER CONTENT (Hero & Products) */}
-        <main className="flex-1 min-w-0">
+        <main className="flex-1 min-w-0 w-full">
           
           {/* Main Hero Banner */}
-          <div className="w-full h-[320px] rounded overflow-hidden relative shadow-md bg-gray-300">
+          <div className="w-full h-[160px] sm:h-[220px] md:h-[320px] rounded-lg md:rounded-xl overflow-hidden relative shadow-md bg-gray-200 group">
              <div className="absolute inset-0 w-full h-full">
                <Image 
                  src="/banner.jpeg" 
                  alt="Seasonal Banner" 
                  fill
-                 className="object-cover object-center"
+                 className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
                  priority
                />
-               <div className="absolute inset-0 bg-black/5"></div>
+               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
              </div>
           </div>
 
-          {/* Seasonal Circles (Overlapping the banner) */}
-          <div className="relative z-10 flex justify-center lg:justify-between gap-3 -mt-10 mb-8 px-4 flex-wrap">
+          {/* Seasonal Circles (Scrollable on Mobile) */}
+          <div className="relative z-10 flex gap-3 md:justify-between -mt-8 md:-mt-10 mb-6 md:mb-8 px-2 md:px-6 overflow-x-auto no-scrollbar py-2">
             {seasons.map((season, idx) => (
-              <div key={idx} className="flex flex-col items-center group">
-                <div className="w-20 h-20 rounded-full bg-[#6B0F0F] border-[4px] border-white shadow-lg flex items-center justify-center cursor-pointer hover:scale-110 transition-transform duration-300 hover:bg-[#8B0000]">
-                  <span className="text-white font-bold text-lg">{season.name}</span>
+              <div key={idx} className="flex flex-col items-center group shrink-0 first:pl-2 last:pr-2">
+                <div className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-[#800000] border-[3px] md:border-[5px] border-white shadow-lg flex items-center justify-center cursor-pointer hover:scale-110 transition-transform duration-300 hover:bg-[#A00000]">
+                  <span className="text-white font-bold text-sm md:text-xl">{season.name}</span>
                 </div>
               </div>
             ))}
           </div>
 
           {/* Product Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+          <h2 className="text-lg md:text-2xl font-bold text-gray-800 mb-4 px-1 border-l-4 border-[#800000] pl-3">Popular Products</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-5">
             {products.map((product) => (
-              <div key={product.id} className="group flex flex-col rounded overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 bg-[#EAEAEA]">
+              <div key={product.id} className="group flex flex-col rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 bg-white border border-gray-100">
                 
                 {/* Product Image Area */}
-                {/* Product Image (Top White Part) */}
-                <div className="h-48 w-full bg-white flex items-center justify-center relative p-4 overflow-hidden">
-                  
-                  {/* Next.js Image Component */}
+                <div className="h-36 md:h-48 w-full bg-white flex items-center justify-center relative p-3 overflow-hidden">
                   <div className="relative w-full h-full">
                     <Image
-                      src={product.img}        // আপনার ডাটা থেকে ইমেজের পাথ
-                      alt={product.title}      // এসইও (SEO) এর জন্য টাইটেল
-                      fill                     // প্যারেন্ট ডিভ (div) এর পুরো জায়গা নিবে
+                      src={product.img}
+                      alt={product.title}
+                      fill
                       className="object-contain group-hover:scale-110 transition-transform duration-500"
                     />
                   </div>
-
-                  {/* Wishlist Icon on Hover */}
-                  <button className="absolute top-2 right-2 bg-gray-100 p-1.5 rounded-full text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity hover:text-red-500 hover:bg-white z-10">
+                  {/* Floating Action Button */}
+                  <button className="absolute top-2 right-2 bg-gray-100/80 p-1.5 rounded-full text-gray-500 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity hover:text-red-600 hover:bg-white z-10 shadow-sm backdrop-blur-sm">
                     <Heart className="w-4 h-4" />
                   </button>
                 </div>
                 
                 {/* Product Info Area */}
-                <div className="p-3 flex-1 flex flex-col">
-                  <h3 className="font-bold text-gray-900 text-[16px] leading-tight mb-1 group-hover:text-[#800000] transition-colors">{product.title}</h3>
-                  <p className="text-[12px] text-gray-500 mb-3">{product.sub}</p>
+                <div className="p-3 flex-1 flex flex-col bg-gray-50/50">
+                  <h3 className="font-bold text-gray-800 text-[13px] md:text-[15px] leading-tight mb-1 line-clamp-2 h-9 md:h-10 group-hover:text-[#800000] transition-colors">
+                    {product.title}
+                  </h3>
+                  <p className="text-[10px] md:text-[11px] text-gray-500 mb-3 uppercase tracking-wide">{product.sub}</p>
                   
                   <div className="mt-auto flex justify-between items-center">
-                    <span className="text-[11px] font-bold text-gray-600 bg-white px-2 py-1 rounded shadow-sm border border-gray-200">{product.weight}</span>
-                    <span className="text-[#D00000] font-bold text-lg">Tk. {product.price}</span>
+                    <span className="text-[10px] md:text-[11px] font-bold text-gray-600 bg-white px-2 py-0.5 rounded border border-gray-200 shadow-sm">{product.weight}</span>
+                    <span className="text-[#D00000] font-black text-sm md:text-lg">Tk. {product.price}</span>
                   </div>
+
+                  {/* Add to Cart (Mobile Only - Optional for 'App feel') */}
+                  <button className="mt-3 w-full bg-[#800000] text-white text-[10px] md:text-xs font-bold py-1.5 md:py-2 rounded hover:bg-[#600000] transition active:scale-95 md:hidden">
+                    ADD TO CART
+                  </button>
                 </div>
               </div>
             ))}
           </div>
         </main>
 
-        {/* 3. RIGHT SIDEBAR (3 Banners in one DIV) */}
-        {/* আপনার রিকোয়ারমেন্ট অনুযায়ী ৩টি ব্যানার একটি প্যারেন্ট div (aside) এর মধ্যে রাখা হয়েছে */}
-        <aside className="w-60 hidden xl:flex flex-col gap-5 shrink-0 sticky top-24">
+        {/* 3. RIGHT SIDEBAR (Banners) - Hidden on Mobile */}
+        <aside className="w-64 hidden xl:flex flex-col gap-6 shrink-0 sticky top-24">
           
-          {/* Banner 1: Summer Sale */}
-          <div className="bg-[#FFD700] h-44 rounded-lg relative overflow-hidden shadow-md group cursor-pointer hover:brightness-105 transition-all w-full">
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
-               <div className="w-16 h-1 bg-white mb-2 opacity-50"></div>
-               <h3 className="text-white drop-shadow-md text-3xl font-black italic leading-none">Summer<br/>SALE</h3>
-               <span className="bg-white text-orange-500 px-3 py-1 rounded-full text-xs font-bold mt-2 shadow-sm group-hover:scale-110 transition-transform">50% OFF</span>
-            </div>
-            <div className="absolute -top-6 -right-6 w-24 h-24 bg-white/20 rounded-full blur-xl"></div>
+          {/* Summer Sale */}
+          <div className="bg-[#FFD700] h-48 rounded-xl relative overflow-hidden shadow-lg group cursor-pointer hover:shadow-xl transition-all w-full flex items-center justify-center text-center">
+             <div className="z-10 px-4">
+               <h3 className="text-white drop-shadow-md text-3xl font-black italic">Summer<br/>SALE</h3>
+               <span className="bg-white text-orange-600 px-4 py-1 rounded-full text-xs font-bold mt-2 inline-block shadow-sm">50% OFF</span>
+             </div>
+             <div className="absolute -top-8 -right-8 w-32 h-32 bg-white/20 rounded-full blur-2xl"></div>
           </div>
 
-          {/* Banner 2: Flash Sale */}
-          <div className="bg-gradient-to-r from-blue-600 to-blue-500 h-32 rounded-lg relative overflow-hidden shadow-md cursor-pointer flex items-center justify-between px-3 group hover:brightness-105 transition-all w-full">
-             <div className="absolute left-[-10px] top-0 bottom-0 w-16 bg-yellow-400 skew-x-[-20deg] border-r-4 border-white"></div>
-             
-             <div className="relative z-10 pl-6">
-               <div className="bg-red-600 text-white text-[10px] font-bold px-1.5 py-0.5 inline-block transform -rotate-6 shadow">FLASH</div>
-               <h3 className="font-black text-white italic text-2xl uppercase leading-none mt-1 drop-shadow-md">SALE</h3>
+          {/* Flash Sale */}
+          <div className="bg-gradient-to-br from-blue-600 to-blue-500 h-36 rounded-xl relative overflow-hidden shadow-lg flex items-center justify-between px-4 w-full cursor-pointer hover:brightness-105 transition-all">
+             <div className="absolute left-[-15px] top-0 bottom-0 w-16 bg-yellow-400 skew-x-[-20deg] border-r-4 border-white shadow"></div>
+             <div className="z-10 pl-6">
+               <div className="bg-red-600 text-white text-[9px] font-extrabold px-2 py-0.5 inline-block -rotate-6 shadow">FLASH</div>
+               <h3 className="font-black text-white italic text-2xl mt-1 uppercase">Sale</h3>
              </div>
-             
-             <div className="relative z-10 text-right">
-                <span className="block text-yellow-300 font-black text-xl drop-shadow">-50%</span>
-                <button className="bg-red-600 text-white text-[10px] font-bold px-2 py-1 rounded shadow hover:bg-red-700 transition mt-1">BUY NOW!</button>
+             <div className="z-10 text-right">
+                <span className="block text-yellow-300 font-black text-2xl drop-shadow-md">-50%</span>
+                <button className="bg-white text-blue-700 text-[10px] font-bold px-3 py-1 rounded shadow mt-1">BUY NOW</button>
              </div>
           </div>
 
-          {/* Banner 3: Best Deal Grid */}
           {/* Best Deal Grid */}
-            <div className="bg-white p-3 rounded shadow-sm w-full">
-              <h3 className="font-black text-2xl mb-2 text-center text-gray-800" style={{ fontFamily: 'serif' }}>Best Deal</h3>
-              
-              <div className="grid grid-cols-2 gap-2">
-                {/* এখানে products অ্যারেকে ম্যাপ করা হয়েছে */}
-                {products.slice(0, 8).map((product) => (
-                  <div key={product.id} className="aspect-square bg-white border border-gray-200 rounded hover:border-[#800000] cursor-pointer transition-all hover:shadow-md relative overflow-hidden group">
-                    
-                    {/* Image Component */}
-                    <Image
-                      src={product.img}       // প্রোডাক্টের ইমেজ পাথ
-                      alt={product.title}     // টাইটেল
-                      fill                    // বক্সের সাইজ অনুযায়ী ফিট হবে
-                      className="object-contain p-2 group-hover:scale-110 transition-transform duration-300"
-                    />
-                    
-                    {/* Optional: Hover overlay for effect */}
-                    <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  </div>
-                ))}
-              </div>
+          <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 w-full">
+            <h3 className="font-black text-xl mb-3 text-center text-gray-800 border-b pb-2" style={{ fontFamily: 'serif' }}>Best Deal</h3>
+            <div className="grid grid-cols-2 gap-2">
+              {products.slice(0, 8).map((product) => (
+                <div key={product.id} className="aspect-square bg-gray-50 border border-gray-200 rounded-lg hover:border-[#800000] cursor-pointer transition-all relative overflow-hidden group">
+                  <Image src={product.img} alt={product.title} fill className="object-contain p-2 group-hover:scale-110 transition-transform" />
+                </div>
+              ))}
             </div>
-
+          </div>
         </aside>
       </div>
 
-      {/* --- FOOTER --- */}
-      <footer className="bg-[#6B0F0F] text-white pt-10 border-t-4 border-[#8B0000] mt-auto">
-        <div className="container mx-auto  px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-sm pb-8">
-           {/* Address */}
+      {/* --- BOTTOM NAVIGATION BAR (FIXED ON MOBILE) --- */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 h-16 flex justify-between items-center px-6 z-50 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+         <div className="flex flex-col items-center gap-1 text-[#800000] cursor-pointer">
+            <HomeIcon className="w-5 h-5" />
+            <span className="text-[10px] font-medium">Home</span>
+         </div>
+         <div className="flex flex-col items-center gap-1 text-gray-400 hover:text-[#800000] cursor-pointer transition-colors">
+            <LayoutGrid className="w-5 h-5" />
+            <span className="text-[10px] font-medium">Category</span>
+         </div>
+         <div className="flex flex-col items-center gap-1 text-gray-400 hover:text-[#800000] cursor-pointer transition-colors relative">
+            <ShoppingBag className="w-5 h-5" />
+            <span className="absolute -top-2 -right-1 bg-[#800000] text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-white">0</span>
+            <span className="text-[10px] font-medium">Cart</span>
+         </div>
+         <div className="flex flex-col items-center gap-1 text-gray-400 hover:text-[#800000] cursor-pointer transition-colors">
+            <User className="w-5 h-5" />
+            <span className="text-[10px] font-medium">Account</span>
+         </div>
+      </div>
+
+      {/* --- FOOTER (Hidden on Mobile, Visible on Desktop) --- */}
+      <footer className="bg-[#6B0F0F] text-white pt-10 border-t-8 border-[#800000] mt-auto hidden md:block">
+        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 text-sm pb-8">
            <div>
              <h4 className="font-bold mb-3 text-base text-yellow-400 border-b border-white/20 inline-block pb-1">Office Address:</h4>
-             <p className="leading-relaxed opacity-90 text-xs">
-               Milon Cinema Hall, Puran Bazar Main Road,<br/>
-               Madaripur Sadar, Madaripur,<br/>
-               Dhaka, Bangladesh
-             </p>
+             <p className="leading-relaxed opacity-90 text-xs">Milon Cinema Hall, Puran Bazar,<br/>Madaripur Sadar, Bangladesh</p>
            </div>
-           
-           {/* Contact */}
            <div>
              <h4 className="font-bold mb-3 text-base text-yellow-400 border-b border-white/20 inline-block pb-1">Contact us:</h4>
              <p className="opacity-90 text-xs">+8801705946829</p>
-             <p className="opacity-90 text-xs">seasonalbazar.info@gmail.com</p>
+             <p className="opacity-90 text-xs">info@seasonalbazar.com</p>
            </div>
-
-           {/* Payment */}
            <div>
-             <h4 className="font-bold mb-3 text-base text-yellow-400 border-b border-white/20 inline-block pb-1">Mobile Payment in:</h4>
-             <p className="opacity-90 text-xs">01705946829 (Bkash)</p>
-             <p className="opacity-90 text-xs">0192287733 (Nagad)</p>
+             <h4 className="font-bold mb-3 text-base text-yellow-400 border-b border-white/20 inline-block pb-1">Payment:</h4>
+             <p className="opacity-90 text-xs">Bkash, Nagad, Rocket</p>
            </div>
-
-           {/* Banking */}
            <div>
              <h4 className="font-bold mb-3 text-base text-yellow-400 border-b border-white/20 inline-block pb-1">Banking:</h4>
              <p className="opacity-90 text-xs">Dutch-Bangla Bank PLC.</p>
-             <p className="opacity-90 text-xs">Madaripur Branch</p>
            </div>
         </div>
 
-        {/* Copyright */}
-        <div className="bg-[#3E0000]">
-          <div className=" container mx-auto flex justify-between item-center py-4 text-center text-[11px] text-gray-400 border-t border-[#500000]">
-        <p>Copyright © 2026 Seasonal Bazar All rights reserved.</p>
-        <p className="mt-1">
-          Development by:{" "}
-          <Link 
-            href="https://pixelandcode.agency/" 
-            target="_blank" 
-            className="text-white font-bold cursor-pointer hover:underline"
-          >
-            Pixel & Code
-          </Link>
-        </p>
-      </div>
+        <div className="bg-[#3E0000] py-4 text-center text-[11px] text-gray-400 border-t border-[#500000]">
+          <p>Copyright © 2026 Seasonal Bazar All rights reserved.</p>
+          <p className="mt-1">
+            Development by: <Link href="https://pixelandcode.agency/" target="_blank" className="text-white font-bold cursor-pointer hover:underline">Pixel & Code</Link>
+          </p>
         </div>
       </footer>
 
